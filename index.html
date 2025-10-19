@@ -2,14 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lucas Rentschler</title>
+  <title>Lucas Rentschler - Research</title>
   <style>
-    body { font-family: Arial, sans-serif; margin: 0; }
-    nav { background: #444; padding: 1em; }
-    nav a { color: white; margin: 0 1em; text-decoration: none; }
-    .tab { display: none; padding: 2em; }
-    .tab.active { display: block; }
-    img.profile { max-width: 200px; border-radius: 5px; }
+    body { 
+      font-family: Arial, sans-serif; 
+      margin: 0; 
+      line-height: 1.6;
+    }
+    nav { 
+      background: #444; 
+      padding: 1em; 
+    }
+    nav a { 
+      color: white; 
+      margin: 0 1em; 
+      text-decoration: none; 
+    }
+    .tab { 
+      display: none; 
+      padding: 2em; 
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .tab.active { 
+      display: block; 
+    }
+    img.profile { 
+      max-width: 200px; 
+      border-radius: 5px; 
+    }
+    h2 {
+      color: #333;
+      border-bottom: 2px solid #444;
+      padding-bottom: 0.5em;
+      margin-top: 2em;
+    }
+    h3 {
+      color: #555;
+      margin-top: 1.5em;
+    }
+    ol, ul {
+      padding-left: 2em;
+    }
+    li {
+      margin-bottom: 0.8em;
+    }
+    .paper-status {
+      font-style: italic;
+      color: #666;
+    }
+    .co-authors {
+      color: #444;
+    }
   </style>
   <script>
     function showTab(tabId) {
@@ -18,7 +62,7 @@
     }
   </script>
 </head>
-<body onload="showTab('home')">
+<body onload="showTab('research')">
   <nav>
     <a href="#" onclick="showTab('home')">Home</a>
     <a href="#" onclick="showTab('research')">Research</a>
@@ -28,8 +72,7 @@
   <div id="home" class="tab">
     <h1>Lucas Rentschler</h1>
     <img src="cvphototie.jpg" alt="Lucas Rentschler" class="profile">
-    <p>I am an experimental economist specializing in strategic decision-making in competitive environments. My research combines theoretical modeling with laboratory experiments to investigate auctions, contests, bargaining, and market design. My work has appeared in leading journals including the Proceedings of the National Academy of Sciences, European Economic Review, Journal of Economic Theory, Games and Economic Behavior, Experimental Economics, and Journal of Economic Behavior & Organization. My research examines strategic interaction under incomplete information, competitive dynamics, and institutional design, providing insights into procurement strategies, negotiation dynamics, and competitive markets.
-I am currently an Associate Professor at Utah State University, where I direct the Experimental Laboratory, and the Master's of Science in Economics program.</p>
+    <p>I am an experimental economist specializing in strategic decision-making in competitive environments. My research combines theoretical modeling with laboratory experiments to investigate auctions, contests, bargaining, and market design. My work has appeared in leading journals including the Proceedings of the National Academy of Sciences, European Economic Review, Journal of Economic Theory, Games and Economic Behavior, Experimental Economics, and Journal of Economic Behavior & Organization. My research examines strategic interaction under incomplete information, competitive dynamics, and institutional design, providing insights into procurement strategies, negotiation dynamics, and competitive markets. I am currently an Associate Professor at Utah State University, where I direct the Experimental Laboratory, and the Master's of Science in Economics program.</p>
   </div>
 
   <div id="research" class="tab">
