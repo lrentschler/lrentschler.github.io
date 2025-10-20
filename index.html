@@ -2,77 +2,240 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lucas Rentschler - Research</title>
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
     body { 
-      font-family: Arial, sans-serif; 
-      margin: 0; 
-      line-height: 1.6;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.7;
+      color: #333;
+      background: #f5f5f5;
     }
+    
     nav { 
-      background: #444; 
-      padding: 1em; 
+      background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
-    nav a { 
-      color: white; 
-      margin: 0 1em; 
-      text-decoration: none; 
-    }
-    .tab { 
-      display: none; 
-      padding: 2em; 
+    
+    nav .nav-container {
       max-width: 1200px;
       margin: 0 auto;
+      display: flex;
+      align-items: center;
     }
+    
+    nav a { 
+      color: #ecf0f1;
+      padding: 1.2em 1.5em;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+    }
+    
+    nav a:hover { 
+      background: rgba(255,255,255,0.1);
+      border-bottom-color: #3498db;
+    }
+    
+    nav a.active {
+      background: rgba(255,255,255,0.15);
+      border-bottom-color: #3498db;
+    }
+    
+    .tab { 
+      display: none;
+      padding: 3em 2em;
+      max-width: 1200px;
+      margin: 0 auto;
+      background: white;
+      min-height: calc(100vh - 60px);
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    }
+    
     .tab.active { 
-      display: block; 
+      display: block;
+      animation: fadeIn 0.4s ease-in;
     }
-    img.profile { 
-      max-width: 200px; 
-      border-radius: 5px; 
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
-    h2 {
-      color: #333;
-      border-bottom: 2px solid #444;
-      padding-bottom: 0.5em;
+    
+    .home-content {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3em;
+      align-items: start;
       margin-top: 2em;
     }
-    h3 {
-      color: #555;
-      margin-top: 1.5em;
+    
+    .profile-section {
+      text-align: center;
     }
+    
+    img.profile { 
+      width: 100%;
+      max-width: 280px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      transition: transform 0.3s ease;
+    }
+    
+    img.profile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    
+    .text-content {
+      padding-top: 0;
+    }
+    
+    h1 {
+      color: #2c3e50;
+      font-size: 2.5em;
+      margin-bottom: 0.5em;
+      font-weight: 600;
+      letter-spacing: -0.5px;
+    }
+    
+    .home-content h1 {
+      margin-top: 0;
+    }
+    
+    h2 {
+      color: #2c3e50;
+      border-bottom: 3px solid #3498db;
+      padding-bottom: 0.5em;
+      margin-top: 2.5em;
+      margin-bottom: 1em;
+      font-size: 1.8em;
+      font-weight: 600;
+    }
+    
+    h2:first-of-type {
+      margin-top: 1em;
+    }
+    
+    h3 {
+      color: #34495e;
+      margin-top: 1.5em;
+      font-size: 1.3em;
+    }
+    
+    p {
+      margin-bottom: 1em;
+      text-align: justify;
+      font-size: 1.05em;
+      color: #444;
+    }
+    
     ol, ul {
       padding-left: 2em;
+      margin-top: 1em;
     }
+    
     li {
-      margin-bottom: 0.8em;
+      margin-bottom: 1.2em;
+      line-height: 1.8;
     }
+    
     .paper-status {
       font-style: italic;
-      color: #666;
+      color: #e74c3c;
+      font-weight: 500;
     }
+    
     .co-authors {
-      color: #444;
+      color: #7f8c8d;
+      font-size: 0.95em;
+    }
+    
+    ol > li {
+      padding-left: 0.5em;
+    }
+    
+    ul[style*="circle"] {
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+    }
+    
+    @media (max-width: 768px) {
+      .home-content {
+        grid-template-columns: 1fr;
+        gap: 2em;
+      }
+      
+      nav a {
+        padding: 1em;
+        font-size: 0.9em;
+      }
+      
+      .tab {
+        padding: 2em 1.5em;
+      }
+      
+      h1 {
+        font-size: 2em;
+      }
+      
+      h2 {
+        font-size: 1.5em;
+      }
     }
   </style>
   <script>
-    function showTab(tabId) {
+    function showTab(tabId, element) {
+      // Remove active class from all tabs and nav links
       document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      
+      // Add active class to selected tab
       document.getElementById(tabId).classList.add('active');
+      
+      // Add active class to corresponding nav link
+      if (element) {
+        element.classList.add('active');
+      }
     }
+    
+    window.onload = function() {
+      showTab('home', document.querySelector('nav a'));
+    };
   </script>
 </head>
-<body onload="showTab('research')">
+<body>
   <nav>
-    <a href="#" onclick="showTab('home')">Home</a>
-    <a href="#" onclick="showTab('research')">Research</a>
-    <a href="https://www.dropbox.com/scl/fi/x10evklg4wt93qcksvhgt/CV___Lucas_Rentschler.pdf?rlkey=zner6fqck2od77qcpx9y0myu2&dl=0" target="_blank">CV</a>
+    <div class="nav-container">
+      <a href="#" onclick="showTab('home', this); return false;" class="active">Home</a>
+      <a href="#" onclick="showTab('research', this); return false;">Research</a>
+      <a href="https://www.dropbox.com/scl/fi/x10evklg4wt93qcksvhgt/CV___Lucas_Rentschler.pdf?rlkey=zner6fqck2od77qcpx9y0myu2&dl=0" target="_blank">CV</a>
+    </div>
   </nav>
 
-  <div id="home" class="tab">
-    <h1>Lucas Rentschler</h1>
-    <img src="cvphototie.jpg" alt="Lucas Rentschler" class="profile">
-    <p>I am an experimental economist specializing in strategic decision-making in competitive environments. My research combines theoretical modeling with laboratory experiments to investigate auctions, contests, bargaining, and market design. My work has appeared in leading journals including the Proceedings of the National Academy of Sciences, European Economic Review, Journal of Economic Theory, Games and Economic Behavior, Experimental Economics, and Journal of Economic Behavior & Organization. My research examines strategic interaction under incomplete information, competitive dynamics, and institutional design, providing insights into procurement strategies, negotiation dynamics, and competitive markets. I am currently an Associate Professor at Utah State University, where I direct the Experimental Laboratory, and the Master's of Science in Economics program.</p>
+  <div id="home" class="tab active">
+    <div class="home-content">
+      <div class="profile-section">
+        <img src="cvphototie.jpg" alt="Lucas Rentschler" class="profile">
+      </div>
+      <div class="text-content">
+        <h1>Lucas Rentschler</h1>
+        <p>I am an experimental economist specializing in strategic decision-making in competitive environments. My research combines theoretical modeling with laboratory experiments to investigate auctions, contests, bargaining, and market design. My work has appeared in leading journals including the Proceedings of the National Academy of Sciences, European Economic Review, Journal of Economic Theory, Games and Economic Behavior, Experimental Economics, and Journal of Economic Behavior & Organization. My research examines strategic interaction under incomplete information, competitive dynamics, and institutional design, providing insights into procurement strategies, negotiation dynamics, and competitive markets. I am currently an Associate Professor at Utah State University, where I direct the Experimental Laboratory, and the Master's of Science in Economics program.</p>
+      </div>
+    </div>
   </div>
 
   <div id="research" class="tab">
